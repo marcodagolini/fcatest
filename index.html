@@ -38,32 +38,6 @@
      <script src="https://lpcdn.lpsnmedia.net/webagent/client-SDK.min.js"></script>
  	  
      
- 	  
-     <script>
-	     
-	     $("document").ready(function() {
-		     setTimeout(function() {
-			     var mybutton = document.getElementById("buttonMap");
-			     mybutton.className += " active";
-			     $(".tabMap").trigger('click');
-		     },10);
-	     });
-	     function openContent(evt, contentType) {
-		     var i, tabcontent, tablinks;
-		     tabcontent = document.getElementsByClassName("tabcontent");
-		     for (i = 0; i < tabcontent.length; i++) {
-			   tabcontent[i].style.display = "none";
-		     }
-		     tablinks = document.getElementsByClassName("tablinks");
-		     for (i = 0; i < tablinks.length; i++) {
-			     tablinks[i].className = tablinks[i].className.replace(" active", "");
-		     }
-		     document.getElementById(contentType).style.display = "block";
-		     evt.target.className += " active";
-	     }
- 	   
-
-    </script>
 	   
     <script>
 	    
@@ -76,18 +50,10 @@
                 var onSuccess = function(data) {
                     // Do something with the returning data
 			if(data.includes("apple")){
-				$('#genericSC').css('display', 'none');
-				$('#facebookSC').css('display', 'none');
+				$('#whatsappSC').css('display', 'none');
 		  		$('#appleSC').css('display', 'inline');
-			}
-			else if(data.includes("book")){
-				$('#genericSC').css('display', 'none');
-				$('#facebookSC').css('display', 'inline');
-		  		$('#appleSC').css('display', 'none');
-			}
-			else{
-				$('#genericSC').css('display', 'inline');
-				$('#facebookSC').css('display', 'none');
+			} else{
+				$('#whatsappSC').css('display', 'inline');
 		  		$('#appleSC').css('display', 'none');
 			}
 		  
@@ -1086,111 +1052,18 @@ metadata: listPickerSCMetadata
             }
        
      </script>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClk9cYf1HsmnrBwzxrfYtJErFlOcvI7V4&libraries=places&callback=initAutocomplete"
-          async defer></script>
-     
+    
      </head>
    
      <body>
-	 <div id="genericSC">
-         <div class="tab">
-               <button id="buttonMap" class="tablinks tabMap" onclick="openContent(event, 'Map')">Map</button>
-               <button id="buttonCard" class="tablinks tabCard" onclick="openContent(event, 'Card')">Card</button>
-               <button id="buttonVideo" class="tablinks tabVideo" onclick="openContent(event, 'Video')">Video</button>
-	       <button id="buttonQuickReplies" class="tablinks tabQuickReplies" onclick="openContent(event, 'QuickReplies')">Quick</button>
-	       <button id="buttonTags" class="tablinks Tags" onclick="openContent(event, 'Tags')">Tags</button>
-         </div>
- 
-         <div id="Map" class="tabcontent">
-               <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-               <div id="map"></div>
-               <form>
-                     Latitude:<br>
-                     <input id="Latitude" type="text" name="Latitude" value="45.437900390993974">
-                     <br>
-                     Longitude:<br>
-                     <input id="Longitude" type="text" name="Longitude" value="9.200615286827087">
-                     <br>
-                     FreeText:<br>
-                     <input id="FreeTextMap" type="text" name="FreeTextMap" value="Amplifon Via Giuseppe Ripamonti, 133 20141 Milano MI Italy">
-               </form>
- 	            <div id="sendMap" class="generate">Generate Code</div>
-         </div>
-      
-         <div id="Card" class="tabcontent">
-               <form>
-                     <br>
-                     Image:<br>
-                     <input id="ImageCard" type="text" name="ImageCard" value="https://i.imgur.com/MC6Ex8X.png">
-                     <br>
-                     FreeText:<br>
-                     <input id="FreeTextCard" type="text" name="FreeTextCard">
-                     <br>
-                     RedirectToURL:<br>
-                     <input id="URLCard" type="text" name="URLCard" value="https://marcodagolini.github.io/webmessaging1/">
-                     <br>
-                     FreeTextURL:<br>
-                     <input id="FreeTextToURL" type="text" name="FreeTextToURL">
-                     <br>
-               </form>
- 	            <div id="sendCard" class="generate">Generate Code</div>
-         </div>
- 
-         <div id="Video" class="tabcontent">
-               <form>
-                     <br>
-                     URLImage:<br>
-                     <input id="URLImage" type="text" name="URLImage" value="https://i.imgur.com/jgrvbJU.png">
-                     <br>
-                     URLVideo:<br>
-                     <input id="URLVideo" type="text" name="URLVideo" value="https://youtu.be/C-EJhFz0snY">
-                     <br>
-                     FreeText:<br>
-                     <input id="FreeTextVideo" type="text" name="FreeTextVideo" value="Hearing Aid set up">
-                     <br>
-               </form>
- 	            <div id="sendVideo" class="generate">Generate Code</div>
-         </div>
-		 
-	<div id="QuickReplies" class="tabcontent">
-		<br><br><br><br><br><br>
- 	            <div id="sendQuickReplies" class="generate">Generate Code</div>
-         </div>
-		 
-       <div id="Tags" class="tabcontent">
-              
-               <form>
-                     <br>
-                     First Name:<br>
-                     <input id="FirstNameTags" type="text" name="FirstNameTags">
-                     <br>
-                     Last Name:<br>
-                     <input id="LastNameTags" type="text" name="LastNameTags">
-                     <br>
-                     Avatar URL:<br>
-                     <input id="AvatarTags" type="text" name="AvatarTags">
-                     <br>
-                     Email Address:<br>
-                     <input id="EmailTags" type="text" name="EmailTags">
-                     <br>
-                     Phone Number:<br>
-                     <input id="PhoneTags" type="text" name="PhoneTags">
-                     <br>
-               </form>
-                     
- 	            <div id="sendTags" class="generate">Generate Code</div>
-		 <br>
-		    <div id="responseTags"></div>
-</div>
-		 
-		 
+	 
 	 </div>
 	 <div id="appleSC">
 		 <button class="applebutton" id="submitRestaurant" >VIU Card</button>
 		 </br></br>
 		 <button class="applebutton" id="submitAccountNumber" >Invia prime disponibilita'</button>
 	 </div>
-	 <div id="facebookSC">
+	 <div id="whatsappSC">
 		 <button class="applebutton" id="example1FB" >example1FB</button>
 		 </br></br>
 		 <button class="applebutton" id="example2FB" >example2FB</button>
