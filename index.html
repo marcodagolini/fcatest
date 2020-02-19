@@ -46,44 +46,34 @@
 	    
             
             $(document).ready(function() {
-              
-                var SDK=lpTag.agentSDK;
-                SDK.init();
-              
-                var onSuccess = function(data) {
-                    // Do something with the returning data
-			if(data.includes("apple")){
-				$('#whatsappSC').css('display', 'none');
-		  		$('#appleSC').css('display', 'inline');
-			} else if(data.includes("whatsapp")){
-				$('#whatsappSC').css('display', 'inline');
-		  		$('#appleSC').css('display', 'none');
-			}
-		  
-
-                };
-                
-                var onError = function(data) {
-			console.log("Error");
-			// Do something with the returning data
-                };
-                
-             
-                SDK.get('authenticatedData.customerDetails.customerId', onSuccess, onError);               
-              
-            });
-  
-
-		function sendSC(json) {
-			var cmdName = lpTag.agentSDK.cmdNames.writeSC;
-			var data = {json:json};
-			lpTag.agentSDK.command(cmdName, data, function (err) {
-				outputLog.value = err ? err : 'done';
-			});
-		}
+		    var SDK=lpTag.agentSDK;
+		    SDK.init();
+		    var onSuccess = function(data) {
+			    if(data.includes("apple")){
+				    $('#whatsappSC').css('display', 'none');
+				    $('#appleSC').css('display', 'inline');
+			    } else if(data.includes("whatsapp")){
+				    $('#whatsappSC').css('display', 'inline');
+				    $('#appleSC').css('display', 'none');
+			    }
+		    };
+		    var onError = function(data) {
+			    console.log("Error");
+		    };
+		    SDK.get('authenticatedData.customerDetails.customerId', onSuccess, onError);               
+	    });
+	    
+	    
+	    function sendSC(json) {
+		    var cmdName = lpTag.agentSDK.cmdNames.writeSC;
+		    var data = {json:json};
+		    lpTag.agentSDK.command(cmdName, data, function (err) {
+			    outputLog.value = err ? err : 'done';
+		    });
+	    }
 	     
 	     
-	     function trimsSC() {
+	     function colorsOrTrimsSC() {
 		     var listPickerSC = {"type":"vertical",
 					 "tag":"list",
 					 "elements":[
@@ -159,35 +149,27 @@
 			     outputLog.value = err ? err : 'done';
 		     });
 	     }
-	     
-	     
-
-	
-	     
-	     
-
-	     
-	     $(document).on('click', function(evt) {
-               if($(evt.target).is('#colorsOrTrims')) {
-		       colorsOrTrimsSC();
-                 }
-            });
-       	    
-	     
-	     
-	      $(document).on('click', function(evt) {
-               if($(evt.target).is('#trims')) {
- 		           trimsSC();    
-                 }
-            });
-	     
-	     
-	     
-	     $(document).on('click', function(evt) {
-               if($(evt.target).is('#colors')) {
-		       colorsSC();
-                 }
-            });
+	    
+	    
+	    
+	    
+	    $(document).on('click', function(evt) {
+		     if($(evt.target).is('#colorsOrTrims')) {
+			     colorsOrTrimsSC();
+		     }
+	    });
+	    
+	    $(document).on('click', function(evt) {
+		    if($(evt.target).is('#trims')) {
+			    colorsOrTrimsSC();    
+		    }
+	    });
+	    
+	    $(document).on('click', function(evt) {
+		    if($(evt.target).is('#colors')) {
+			    colorsOrTrimsSC();
+		    }
+	    });
 	     
 	     
 	     
