@@ -113,8 +113,8 @@
 		     ];
 		     var cmdName = lpTag.agentSDK.cmdNames.writeSC;
 		     var payload = {
-			     json: listPickerSC,
-			     metadata: listPickerSCMetadata
+			     json: listPickerSC
+			     // metadata: listPickerSCMetadata
 		     };
 		     lpTag.agentSDK.command(cmdName, payload, function (err) {
 			     outputLog.value = err ? err : 'done';
@@ -366,7 +366,7 @@
 	    });
 	    
 	    $(document).on('click', function(evt) {
-		    if($(evt.target).is('#colors')) {
+		    if($(evt.target).is('#link')) {
 			    sendLink();
 		    }
 	    });
