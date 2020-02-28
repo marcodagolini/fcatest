@@ -121,7 +121,7 @@
 			    json: listPickerSC
 			    // metadata: listPickerSCMetadata
 		    };
-		    if((appleURL.startsWith("https://www.fiat.it")) || (appleURL.startsWith("https://www.fcagroup.com"))){
+		    if((appleURL.startsWith("https://www.fiat.it")) || (appleURL.startsWith("https://www.fcagroup.com")) || (appleURL.startsWith("https://www.fiat.com")) ){
 			    lpTag.agentSDK.command(cmdName, payload, function (err) {
 				    outputLog.value = err ? err : 'done';
 			    });
