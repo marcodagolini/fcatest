@@ -79,6 +79,7 @@
 	    
 	    
 	    function sendLink() {
+		    var appleURL = $('#appleURL').val;
 		     var listPickerSC = {
 			     "type": "vertical",
 			     "tag": "richLink",
@@ -94,7 +95,7 @@
 						     "actions": [
 							     {
 								     "type": "link",
-								     "uri": "https://www.fiat.it/"
+								     "uri": appleURL
 							     }
 						     ]
 					     }
@@ -390,6 +391,7 @@
 		 <button class="applebutton" id="colors" >Colori</button>
 		</br></br>
 		 <button class="applebutton" id="link" >Link</button>
+		<label>URL: </label> <input type="text" id="appleURL"></br>
 	 </div>
 	 <div id="whatsappSC">
 		<div id="whatsappLabel">This is WhatsApp!!</div>
