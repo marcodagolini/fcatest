@@ -81,48 +81,58 @@
 	    
 	    
 	    function sendLink() {
+		    
 		    var appleURL = $('#appleURL')[0].value;
 		    console.log(appleURL);
-		     var listPickerSC = {
-			     "type": "vertical",
-			     "tag": "richLink",
-			     "elements": [
-				     {
-					     "type": "image",
-					     "url": "https://res.cloudinary.com/djtjkiytu/image/upload/v1582124809/Medium-Fiat_HQ_500C_june_extra_assets_IG.jpg"
-				     },
-				     {
-					     "type": "button",
-					     "title": "Clicca qui per andare al link",
-					     "click": {
-						     "actions": [
-							     {
-								     "type": "link",
-								     "uri": appleURL
-							     }
-						     ]
-					     }
-				     }
-				     ]
-		     };
-		     var listPickerSCMetadata = [
-			     {"type":"BusinessChatMessage",
-			      "multipleSelection":true,
-			      "receivedMessage":{
-				      "style":"icon",
-				      "subtitle":"Seleziona l'argomento di tuo interesse!",
-				      "title":"A cosa sei interessato?",
-				      "imageURL":"https://liveengage-abc.herokuapp.com/img/routing/routing_lstpkr_wdgt.png"}
-			     }
-		     ];
-		     var cmdName = lpTag.agentSDK.cmdNames.writeSC;
-		     var payload = {
-			     json: listPickerSC
-			     // metadata: listPickerSCMetadata
-		     };
-		     lpTag.agentSDK.command(cmdName, payload, function (err) {
-			     outputLog.value = err ? err : 'done';
-		     });
+		    var listPickerSC = {
+			    "type": "vertical",
+			    "tag": "richLink",
+			    "elements": [
+				    {
+					    "type": "image",
+					    "url": "https://res.cloudinary.com/djtjkiytu/image/upload/v1582124809/Medium-Fiat_HQ_500C_june_extra_assets_IG.jpg"
+				    },
+				    {
+					    "type": "button",
+					    "title": "Clicca qui per andare al link",
+					    "click": {
+						    "actions": [
+							    {
+								    "type": "link",
+								    "uri": appleURL
+							    }
+						    ]
+					    }
+				    }
+			    ]
+		    };
+		    var listPickerSCMetadata = [
+			    {"type":"BusinessChatMessage",
+			     "multipleSelection":true,
+			     "receivedMessage":{
+				     "style":"icon",
+				     "subtitle":"Seleziona l'argomento di tuo interesse!",
+				     "title":"A cosa sei interessato?",
+				     "imageURL":"https://liveengage-abc.herokuapp.com/img/routing/routing_lstpkr_wdgt.png"}
+			    }
+		    ];
+		    var cmdName = lpTag.agentSDK.cmdNames.writeSC;
+		    var payload = {
+			    json: listPickerSC
+			    // metadata: listPickerSCMetadata
+		    };
+		    if((appleURL.startsWith("https://www.fiat.it")) || (appleURL.startsWith("https://www.fcagroup.com"))){
+			    lpTag.agentSDK.command(cmdName, payload, function (err) {
+				    outputLog.value = err ? err : 'done';
+			    });
+		    }  else{
+			    document.getElementById("alertURL").innerHTML = "Inserire un URL valido!";
+			    document.getElementById("alertURL").style = "color : red";
+			    setTimeout(function(){
+				    document.getElementById("alertURL").innerHTML = "";
+			    }, 3000)
+		    }
+		     
 	     }
 	    
 	    
@@ -395,6 +405,10 @@
 		</br></br></br></br>
 		 <button class="applebutton" id="link" >Link</button></br>
 		<label>URL: </label> <input type="text" id="appleURL"></br>
+		<div id="alertURL"></div>
+
+
+
 	 </div>
 	 <div id="whatsappSC">
 		<div id="whatsappLabel">This is WhatsApp!!</div>
