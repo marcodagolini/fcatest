@@ -71,6 +71,56 @@
 			    outputLog.value = err ? err : 'done';
 		    });
 	    }
+	    
+	    
+	    
+	    
+	    
+	    
+	    function sendLink() {
+		     var listPickerSC = {
+			     "type": "vertical",
+			     "tag": "richLink",
+			     "elements": [
+				     {
+					     "type": "image",
+					     "url": "https://res.cloudinary.com/djtjkiytu/image/upload/v1582124393/ventaglio-colori.jpg"
+				     },
+				     {
+					     "type": "button",
+					     "title": "Nuova 500E",
+					     "click": {
+						     "actions": [
+							     {
+								     "type": "link",
+								     "uri": "https://res.cloudinary.com"
+							     }
+						     ]
+					     }
+				     }
+				     ]
+		     };
+		     var listPickerSCMetadata = [
+			     {"type":"BusinessChatMessage",
+			      "multipleSelection":true,
+			      "receivedMessage":{
+				      "style":"icon",
+				      "subtitle":"Seleziona l'argomento di tuo interesse!",
+				      "title":"A cosa sei interessato?",
+				      "imageURL":"https://liveengage-abc.herokuapp.com/img/routing/routing_lstpkr_wdgt.png"}
+			     }
+		     ];
+		     var cmdName = lpTag.agentSDK.cmdNames.writeSC;
+		     var payload = {
+			     json: listPickerSC,
+			     metadata: listPickerSCMetadata
+		     };
+		     lpTag.agentSDK.command(cmdName, payload, function (err) {
+			     outputLog.value = err ? err : 'done';
+		     });
+	     }
+	    
+	    
 	     
 	     
 	     function colorsOrTrimsSC() {
@@ -313,6 +363,12 @@
 			    colorsSC();
 		    }
 	    });
+	    
+	    $(document).on('click', function(evt) {
+		    if($(evt.target).is('#colors')) {
+			    sendLink();
+		    }
+	    });
 	     
 	     
 	     
@@ -331,6 +387,8 @@
 		 <button class="applebutton" id="trims" >Allestimenti</button>
 		</br></br>
 		 <button class="applebutton" id="colors" >Colori</button>
+		</br></br>
+		 <button class="applebutton" id="link" >Link</button>
 	 </div>
 	 <div id="whatsappSC">
 		<div id="whatsappLabel">This is WhatsApp!!</div>
