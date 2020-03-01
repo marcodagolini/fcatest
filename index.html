@@ -121,7 +121,19 @@
 			    json: listPickerSC
 			    // metadata: listPickerSCMetadata
 		    };
-		    if((appleURL.startsWith("https://www.fiat.it")) || (appleURL.startsWith("https://www.fcagroup.com")) || (appleURL.startsWith("https://www.fiat.com")) ){
+		    var whitelistURL = ["fiat.it", "fcagroup.com", "fiat.com"];
+		    var whitelistURLlength = whitelistURL.length;
+		    var start = -1;
+		    for(var a = 0; a < whitelistURLlength; a ++){
+			    if(appleURL.includes(whitelistURL[a])){
+				    start = appleURL.indexOf(whitelistURL[a]);
+				    appleURL = appleURL.substring(start);
+				    appleURL = "https://" + appleURL;
+				    a = whitelistURLlength;
+			    }
+		    }
+		    if(start > -1){
+			    
 			    lpTag.agentSDK.command(cmdName, payload, function (err) {
 				    outputLog.value = err ? err : 'done';
 			    });
