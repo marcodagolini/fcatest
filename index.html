@@ -127,7 +127,7 @@
 			    if(appleURL.includes(whitelistURL[a])){
 				    start = appleURL.indexOf(whitelistURL[a]);
 				    appleURL = appleURL.substring(start);
-				    appleURL = "https://" + appleURL;
+				    appleURL = "https://www." + appleURL;
 				    console.log("URL --> " + appleURL);
 				    a = whitelistURLlength;
 			    }
