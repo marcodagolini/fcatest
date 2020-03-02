@@ -47,6 +47,8 @@
 	    $('#whatsappSC').css('display', 'none');
 	    $('#appleSC').css('display', 'none');
 	    
+	    var myPhoneJSON;
+	    
             
             $(document).ready(function() {
 		    var SDK=lpTag.agentSDK;
@@ -55,15 +57,26 @@
 			    if(data.includes("apple")){
 				    $('#whatsappSC').css('display', 'none');
 				    $('#appleSC').css('display', 'inline');
+				    setTimeout(function(){
+					    document.getElementById("telefono").innerHTML = "phone --> " + myPhoneJSON[0].phone;
+				    }, 3000)
+				    
 			    } else if(data.includes("whatsapp")){
 				    $('#whatsappSC').css('display', 'inline');
 				    $('#appleSC').css('display', 'none');
 			    }
 		    };
+		    var onSuccess1 = function(data) {
+			    myPhoneJSON = data;
+		    };
 		    var onError = function(data) {
 			    console.log("Error");
 		    };
-		    SDK.get('authenticatedData.customerDetails.customerId', onSuccess, onError);               
+		    var onError1 = function(data) {
+			    console.log("Error");
+		    };
+		    SDK.get('authenticatedData.customerDetails.customerId', onSuccess, onError);
+		    SDK.get('authenticatedData.personalInfo.contactInfo', onSuccess1, onError1); //telefono
 	    });
 	    
 	    
@@ -426,7 +439,10 @@
 
 	 </div>
 	 <div id="whatsappSC">
+		 </br>
 		<div id="whatsappLabel">This is WhatsApp!!</div>
+		</br></br>
+		 <p id="telefono"></p>
 	 </div>
         
     </body>
