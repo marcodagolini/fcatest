@@ -57,14 +57,14 @@
 			    if(data.includes("apple")){
 				    $('#whatsappSC').css('display', 'none');
 				    $('#appleSC').css('display', 'inline');
-				    setTimeout(function(){
-					    console.log("done");
-					    document.getElementById("telefono").innerHTML = "phone --> " + myPhoneJSON[0].phone;
-				    }, 3000)
 				    
 			    } else if(data.includes("whatsapp")){
 				    $('#whatsappSC').css('display', 'inline');
 				    $('#appleSC').css('display', 'none');
+				    setTimeout(function(){
+					    console.log("done");
+					    document.getElementById("telefono").innerHTML = "phone --> " + myPhoneJSON[0].phone;
+				    }, 3000)
 			    }
 		    };
 		    var onSuccess1 = function(data) {
